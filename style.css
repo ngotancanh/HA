@@ -1,0 +1,71 @@
+:root {
+    --soft-pink: #fce4ec;
+    --accent-pink: #ff8fa3;
+    --white-trans: rgba(255, 255, 255, 0.5);
+}
+
+body {
+    background-color: var(--soft-pink);
+    font-family: 'Quicksand', sans-serif;
+    margin: 0; overflow: hidden;
+    display: flex; justify-content: center; align-items: center; min-height: 100vh;
+}
+
+/* Centering all text and content */
+.container { text-align: center; width: 100%; position: relative; z-index: 10; }
+section { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.hidden { display: none; opacity: 0; }
+
+/* Falling stars effect */
+.stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.star { position: absolute; background: white; border-radius: 50%; box-shadow: 0 0 5px 4px white; animation: fall linear infinite; }
+@keyframes fall { to { transform: translateY(100vh); opacity: 0; } }
+
+.container { display: flex; justify-content: center; align-items: center; min-height: 100vh; position: relative; z-index: 10; }
+section { position: absolute; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.8s ease; }
+.hidden { display: none !important; opacity: 5; }
+
+/* STEP 1: Timer Style (English labels) [3] */
+.timer-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--accent-pink); font-style: italic; margin: 0; }
+.timer-subtitle { font-size: 1.5rem; color: var(--accent-pink); margin: 0 0 10px; font-weight: 300; }
+#timer-container { display: flex; align-items: center; gap: 15px; margin: 30px 0; }
+.timer-box { background: var(--white-trans); padding: 15px; border-radius: 12px; min-width: 75px; border: 1px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.timer-box span { font-size: 2.2rem; font-weight: bold; color: var(--accent-pink); }
+.timer-box .label { font-size: 0.6rem; color: #888; margin-top: 5px; letter-spacing: 1px; }
+
+/* Button animations */
+.main-btn-anim {
+    background: var(--accent-pink); color: white; border: none; padding: 15px 40px;
+    border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 143, 163, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.main-btn-anim:hover { transform: scale(1.1) translateY(-3px); box-shadow: 0 10px 25px rgba(255, 143, 163, 0.6); }
+
+/* STEP 2: Luxury Gift (Text ABOVE the box) */
+.text-above-box {
+    color: var(--accent-pink); font-weight: 600; font-size: 1.2rem;
+    margin-bottom: 20px; /* Space between text and box */
+    font-family: 'Dancing Script', cursive;
+}
+.luxury-gift { position: relative; width: 220px; height: 200px; cursor: pointer; transition: 0.5s; }
+.box-body { position: absolute; bottom: 0; width: 200px; height: 150px; background: #ff8fa3; border-radius: 5px; left: 10px; }
+.lid { position: absolute; top: 30px; width: 220px; height: 40px; background: #ffb6c1; border-radius: 5px; z-index: 5; transition: 0.8s ease-in-out; }
+.ribbon-v { position: absolute; left: 50%; transform: translateX(-50%); width: 30px; height: 100%; background: rgba(255,255,255,0.6); }
+.bow { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 50px; height: 25px; background: white; border-radius: 50% 50% 0 0; }
+
+.gift-wrapper.opened .lid { transform: translateY(-150px) rotate(-15deg); opacity: 0; }
+.blinking-text { color: var(--accent-pink); font-weight: 500; margin-top: 25px; animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0.2; } }
+
+/* STEP 3: Special Day Typography */
+.special-day-title { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--accent-pink); margin: 15px 0; }
+.birthday-day-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent-pink); margin: 10px 0; }
+.photo-frame img { width: 180px; height: 180px; border-radius: 10px; border: 8px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.photo-frame { position: absolute; transition: 0.6s; z-index: -1; }
+.p1 { top: -100px; left: -140px; transform: rotate(-10deg); }
+.p2 { top: -100px; right: -140px; transform: rotate(10deg); }
+.p3 { bottom: -100px; left: -140px; transform: rotate(5deg); }
+.p4 { bottom: -100px; right: -140px; transform: rotate(-5deg); }
+
+/* STEP 4: Letter */
+.letter-paper { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 450px; }
