@@ -26,7 +26,7 @@ section { position: absolute; width: 100%; display: flex; flex-direction: column
 .hidden { display: none !important; opacity: 5; }
 
 /* STEP 1: Timer Style (English labels) [3] */
-.timer-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--accent-pink); font-style: italic; margin: 0; }
+.timer-title { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--accent-pink); font-style: italic; margin: 0; }
 .timer-subtitle { font-size: 1.5rem; color: var(--accent-pink); margin: 0 0 10px; font-weight: 300; }
 #timer-container { display: flex; align-items: center; gap: 15px; margin: 30px 0; }
 .timer-box { background: var(--white-trans); padding: 15px; border-radius: 12px; min-width: 75px; border: 1px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
@@ -47,6 +47,13 @@ section { position: absolute; width: 100%; display: flex; flex-direction: column
     margin-bottom: 20px; /* Space between text and box */
     font-family: 'Dancing Script', cursive;
 }
+
+.sub-bottom {
+    color: var(--white); font-weight: 600; font-size: 1.2rem;
+    margin-bottom: 20px; /* Space between text and box */
+    font-family: 'Dancing Script', cursive;
+}
+
 .luxury-gift { position: relative; width: 220px; height: 200px; cursor: pointer; transition: 0.5s; }
 .box-body { position: absolute; bottom: 0; width: 200px; height: 150px; background: #ff8fa3; border-radius: 5px; left: 10px; }
 .lid { position: absolute; top: 30px; width: 220px; height: 40px; background: #ffb6c1; border-radius: 5px; z-index: 5; transition: 0.8s ease-in-out; }
@@ -59,13 +66,78 @@ section { position: absolute; width: 100%; display: flex; flex-direction: column
 
 /* STEP 3: Special Day Typography */
 .special-day-title { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--accent-pink); margin: 15px 0; }
-.birthday-day-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent-pink); margin: 10px 0; }
-.photo-frame img { width: 180px; height: 180px; border-radius: 10px; border: 8px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.birthday-day-title { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--accent-pink); margin: 10px 0; }
+.photo-frame img { width: 200px; height: 180px; border-radius: 15px; border: 8px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 .photo-frame { position: absolute; transition: 0.6s; z-index: -1; }
-.p1 { top: -100px; left: -140px; transform: rotate(-10deg); }
-.p2 { top: -100px; right: -140px; transform: rotate(10deg); }
-.p3 { bottom: -100px; left: -140px; transform: rotate(5deg); }
-.p4 { bottom: -100px; right: -140px; transform: rotate(-5deg); }
+.p1 { top: -180px; left: 50px; transform: rotate(-10deg); }
+.p2 { top: -200px; right: 50px; transform: rotate(10deg); }
+.p3 { top: 200px; right: 50px; transform: rotate(10deg); }
+.p4 { bottom: -120px; left: 70px; transform: rotate(-15deg); }
+.p5 { bottom: 70px; left: 100px; transform: rotate(5deg); }
+.p6 { bottom: 70px; right: 100px; transform: rotate(-5deg); }
+
+
+/*Ảnh*/
+
+.photo-frame {
+    position: absolute; /* Giả định bạn đang dùng absolute để sắp xếp */
+    z-index: 999; /* Đẩy tất cả ảnh lên lớp trên cùng */
+    cursor: pointer;
+}
+
+/* Đảm bảo ảnh bên trong nhận sự kiện click */
+.photo-frame img {
+    display: block;
+    width: 100%;
+    pointer-events: auto; /* Cho phép nhận click */
+}
+/* 1. Lớp phủ modal (nền tối) */
+.modal {
+  display: flex; /* Chuyển sang flexbox để căn giữa */
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  cursor: zoom-out;
+
+  /* --- PHẦN MỚI: Hiệu ứng mượt mà cho lớp phủ --- */
+  opacity: 0; /* Ẩn hoàn toàn (trong suốt) */
+  visibility: hidden; /* Ẩn hoàn toàn khỏi luồng tương tác */
+  pointer-events: none; /* Ngăn không cho click xuyên qua khi đóng */
+  transition: opacity 0.4s ease, visibility 0.4s ease; /* Thời gian fade */
+}
+
+/* Khi modal được kích hoạt (JS sẽ thêm class này) */
+.modal.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto; /* Cho phép click */
+}
+
+/* 2. Ảnh trong modal */
+.modal-content {
+  display: block;
+  max-width: 80%;
+  max-height: 80vh;
+  border: 2px solid white;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+
+  /* --- PHẦN MỚI: Hiệu ứng mượt mà cho ảnh --- */
+  transform: scale(0.5); /* Bắt đầu với kích thước nhỏ */
+  transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* "Béng" hơn với cubic-bezier */
+}
+
+/* Khi ảnh mở, nó sẽ scale về kích thước gốc */
+.modal.open .modal-content {
+  transform: scale(1);
+}
+
+
+
 
 /* STEP 4: Letter */
 .letter-paper { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 450px; }

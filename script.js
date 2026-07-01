@@ -14,7 +14,7 @@ function createStars() {
 createStars();
 
 // 2. Countdown logic to July 01
-const targetDate = new Date("July 1, 2026 00:00:00").getTime();
+const targetDate = new Date("July 1, 2026 23:00:00").getTime();
 setInterval(() => {
     const distance = targetDate - new Date().getTime();
     document.getElementById("days").innerText = Math.floor(distance / 86400000);
@@ -72,3 +72,40 @@ document.getElementById('gift-box').addEventListener('click', function() {
 });
 
 document.getElementById('toStep4').addEventListener('click', () => nextStep('step3', 'step4'));
+
+//Ảnh 
+
+// Chọn các phần tử
+const modal = document.createElement('div');
+modal.id = 'imageModal';
+modal.className = 'modal'; // Class mặc định là ẩn và mờ
+modal.innerHTML = '<img class="modal-content" id="fullImage">';
+document.body.appendChild(modal);
+
+const modalImg = document.getElementById("fullImage");
+
+// Cải thiện vòng lặp: đảm bảo bắt được cả ảnh nằm trong các thẻ bị đè (z-index)
+document.querySelector('.special-content').addEventListener('click', function(e) {
+    // Kiểm tra xem cái mình nhấn vào có phải là thẻ <img> không
+    const clickedImg = e.target.closest('.photo-frame img');
+
+    if (clickedImg) {
+        modalImg.src = clickedImg.src; // Gán link ảnh
+        modal.classList.add('open'); // Kích hoạt hiệu ứng mở mượt mà
+    }
+});
+
+// Đóng khi click vào nền đen (ngoài ảnh)
+modal.addEventListener('click', function(e) {
+    if (e.target !== modalImg) {
+        modal.classList.remove('open'); // Gỡ bỏ class để đóng mượt mà
+    }
+});
+
+// Đóng khi nhấn phím ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape" && modal.classList.contains('open')) {
+        modal.classList.remove('open');
+    }
+});
+
