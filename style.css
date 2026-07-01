@@ -141,3 +141,29 @@ section { position: absolute; width: 100%; display: flex; flex-direction: column
 
 /* STEP 4: Letter */
 .letter-paper { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 450px; }
+
+/* Dành cho màn hình điện thoại (chiều rộng dưới 768px) */
+@media (max-width: 768px) {
+    /* Cho tiêu đề nhỏ lại */
+    .special-day-title {
+        font-size: 2rem;
+    }
+
+    /* Thu nhỏ các khung ảnh để không bị tràn màn hình */
+    .photo-frame {
+        width: 120px; /* Điều chỉnh kích thước khung ảnh */
+        height: 120px;
+    }
+
+    /* Điều chỉnh vị trí của các ảnh nếu cần */
+    .p1 { top: 10%; left: 5%; }
+    .p2 { top: 10%; right: 5%; }
+    /* ... tùy chỉnh vị trí cho các class khác ... */
+    
+    /* Làm cho nội dung thư dễ đọc hơn */
+    .message-box {
+        width: 90%;
+        padding: 15px;
+    }
+}
+
