@@ -14,7 +14,7 @@ function createStars() {
 createStars();
 
 // 2. Countdown logic to July 01
-const targetDate = new Date("July 1, 2026 23:00:00").getTime();
+const targetDate = new Date("July 1, 2026 23:45:00").getTime();
 setInterval(() => {
     const distance = targetDate - new Date().getTime();
     document.getElementById("days").innerText = Math.floor(distance / 86400000);
